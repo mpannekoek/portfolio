@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Web;
+@{
+    var site = Model.Root();
+    var selection = site.Children.Where(x => x.IsVisible());
+}
+
+<a class="main-color" href="@site.Url()">@site.Name</a>
+
+@foreach (var item in selection)
+{
+    <a class="main-color" href="@item.Url()">@item.Name</a>
+}

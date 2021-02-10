@@ -1,0 +1,78 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = null;
+    var root = Model.Root();
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@Model.Name - @root.GetProperty("Sitename").GetValue()</title>
+
+    <link rel="stylesheet" href="@Url.Content("~/css/normalize.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")" />
+
+    <script src="https://kit.fontawesome.com/2848215233.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="main-bg-color main-color">
+
+<div id="mainTopNavOverlay" class="main-bg-color main-color">
+    <div class="mainTopNavOverlayInner">
+        <div id="closeMainTopnavBtn" class="hover-accent-bg-color" onclick="closeMainTopnav()">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+    <div class="content">
+        <nav>
+            @Html.Partial("~/views/partials/navigation/TopNavigation.cshtml")
+        </nav>
+    </div>
+</div>
+
+<div id="mainTopnav" class="block-bg-color block-color">
+    <div class="mainTopnavInner">
+        @if (root.HasProperty("Logo"))
+        {
+            if (root.GetProperty("Logo").GetValue() is IPublishedContent logo)
+            {
+                <div class="logo-small">
+                    <a href="@root.Url()"><img src="@logo.Url()" alt="Martijn Pannekoek" /></a>
+                </div>
+            }
+        }
+        <div id="toggleMainTopnavBtn" class="hover-accent-bg-color" onclick="openMainTopnav()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</div>
+
+<div id="mainSidenav" class="collapsed block-bg-color block-color">
+    <div id="toggleMainSidenavBtn" class="accent-color hover-main-bg-color" onmouseenter="openMainSidenav()" onclick="toggleMainSidenav()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <nav>
+        @Html.Partial("~/views/partials/navigation/SideNavigation.cshtml")
+    </nav>
+</div>
+
+<div id="siteContainer" class="collapsed">
+    <main id="siteContent">
+        @RenderBody()
+    </main>
+    
+    <footer id="siteFooter" class="dark-bg-color">
+        <div id="siteFooterContent">
+            Footer
+        </div>
+    </footer>
+</div>
+
+<script src="@Url.Content("~/scripts/scripts.js")"></script>
+
+</body>
+
+</html>

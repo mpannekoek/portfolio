@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web;
+@{
+    var site = Model.Root();
+    var siteSvgIcon = (IPublishedContent) site.GetProperty("SvgIcon").GetValue();
+    var selection = site.Children.Where(x => x.IsVisible());
+}
+
+<a href="@site.Url()" class="sideMenuItem hover-main-bg-color">
+    <div class="sideMenuItemGroup">
+        <div class="sideMenuItemIcon" style="background-image: url(@siteSvgIcon.Url());"></div>
+        <div class="sideMenuItemLabel block-color displayNone">@site.Name</div>
+    </div>
+</a>
+
+@foreach (var item in selection)
+{
+    var itemSvgIcon = (IPublishedContent)item.GetProperty("SvgIcon").GetValue();
+
+    <a href="@item.Url()" class="sideMenuItem hover-main-bg-color">
+        <div class="sideMenuItemGroup">
+            <div class="sideMenuItemIcon" style="background-image: url(@itemSvgIcon.Url());"></div>
+            <div class="sideMenuItemLabel block-color displayNone">@item.Name</div>
+        </div>
+    </a>
+}

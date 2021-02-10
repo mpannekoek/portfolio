@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="30" width="200" style="background-color:green;">
+  <text x="0" y="15" style="font-family: monospace; font-size: 18; fill: #E7E7E7;">Martijn</text>
+  <text x="70" y="15" style="font-family: monospace; font-size: 18; fill: #00B5FF;">Pannekoek</text>
+  <line x1="0" y1="20" x2="130" y2="20" style="stroke: #00B5FF"/>
+</svg>
